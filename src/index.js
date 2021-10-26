@@ -51,7 +51,7 @@ class App extends React.PureComponent {
   }
 
   async handleNewPost() {
-    await delay(10000);
+    await delay(15000);
     window.location.reload();
   }
   handleReactionChange() {
