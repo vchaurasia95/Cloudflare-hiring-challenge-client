@@ -6,8 +6,7 @@ import NewPost from './newPost';
 import { CONSTANTS } from './constants';
 import './index.css';
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-class App extends React.PureComponent {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +20,7 @@ class App extends React.PureComponent {
     this.getCards = this.setCards.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.addCard = this.addCard.bind(this);
   }
   handleToggle() {
     this.setState({ open: !this.state.open });
@@ -50,12 +50,19 @@ class App extends React.PureComponent {
       });
   }
 
-  async handleNewPost() {
-    await delay(15000);
-    window.location.reload();
+  async handleNewPost(newData) {
+    this.addCard(newData);
   }
   handleReactionChange() {
     this.fetchAllPost();
+  }
+
+  addCard(cardData) {
+    var cards = this.state.posts;
+    cards[cards.length] = cardData;
+    cards = cards.sort(this.compareDate);
+    console.log(cards);
+    this.setCards(cards);
   }
 
   setCards(data) {

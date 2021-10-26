@@ -71,22 +71,15 @@ class PostCard extends React.Component {
 
     if (props.dataParentToChild.id !== state.id) {
       return {
+        id: props.dataParentToChild.id,
         comments: props.dataParentToChild.post.comments,
         like: props.dataParentToChild.post.reactions.like,
         dislike: props.dataParentToChild.post.reactions.dislike
       };
     }
+    console.log('returning null')
     return null;
   }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     data: this.props.dataParentToChild,
-  //     cards: this.updateComments(this.props.dataParentToChild.post.comments),
-  //     like: this.props.dataParentToChild.post.reactions.like,
-  //     dislike: this.props.dataParentToChild.post.reactions.dislike
-  //   });
-  // }
 
   handleExpandClick() {
     const val = !this.state.expanded;
@@ -131,14 +124,15 @@ class PostCard extends React.Component {
 
     fetch(CONSTANTS.baseUrl + CONSTANTS.addReactionUrl, request)
       .then(response => response.json())
-      .then(newData => {
-        console.log(newData);
-        this.setState({
+      .then(async (newData) => {
+        console.log(newData.post.reactions.like);
+        await this.setState({
           like: newData.post.reactions.like,
           dislike: newData.post.reactions.dislike,
           cards: this.updateComments(newData.post.comments),
           comments: newData.post.comments
         });
+        console.log(this.state);
         this.setState({ data: newData })
       });
   }

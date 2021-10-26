@@ -13,10 +13,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-
-
-
 class NewPost extends React.Component {
     constructor(props) {
         super(props);
@@ -47,7 +43,6 @@ class NewPost extends React.Component {
             body: post
         };
         request.body = JSON.stringify(request.body);
-        // console.log(request);
         fetch(CONSTANTS.baseUrl+CONSTANTS.addNewPostUrl, request)
             .then(response => response.json())
             .then(newData => {
