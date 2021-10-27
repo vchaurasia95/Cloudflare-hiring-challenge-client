@@ -77,7 +77,6 @@ class PostCard extends React.Component {
         dislike: props.dataParentToChild.post.reactions.dislike
       };
     }
-    console.log('returning null')
     return null;
   }
 
@@ -125,7 +124,6 @@ class PostCard extends React.Component {
     fetch(CONSTANTS.baseUrl + CONSTANTS.addReactionUrl, request)
       .then(response => response.json())
       .then(async (newData) => {
-        console.log(newData.post.reactions.like);
         await this.setState({
           like: newData.post.reactions.like,
           dislike: newData.post.reactions.dislike,
