@@ -130,7 +130,6 @@ class PostCard extends React.Component {
           cards: this.updateComments(newData.post.comments),
           comments: newData.post.comments
         });
-        console.log(this.state);
         this.setState({ data: newData })
       });
   }

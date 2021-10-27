@@ -61,7 +61,6 @@ class App extends React.Component {
     var cards = this.state.posts;
     cards[cards.length] = cardData;
     cards = cards.sort(this.compareDate);
-    console.log(cards);
     this.setCards(cards);
   }
 
